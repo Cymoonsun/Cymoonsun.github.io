@@ -5,17 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/img/test_icon.jpg">
     <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.min.js" integrity="sha512-ztxZscxb55lKL+xmWGZEbBHekIzy+1qYKHGZTWZYH1GUwxy0hiA18lW6ORIMj4DHRgvmP/qGcvqwEyFFV7OYVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 </head>
 <body>
     <h1 class="text-3xl font-bold underline">Hola</h1>
-    <h2>Stuff</h2>
-    <ul x-data="{ colors: ['Red', 'Orange', 'Yellow'] }">
-        <template x-for="color in colors">
-            <li x-text="color"></li>
+    <div class="grid gap-4 grid-cols-3 grid-rows-3" x-data="{ animeRecords: [] }" x-init="animeRecords = getTestStuff()">
+        <template x-for="record in animeRecords">
+            <a href="#ex1" rel="modal:open" @click="$('#ex1 p').html(onGoing.find(finder=> finder.title == $event.target.innerText).synopsis)" class="rounded-lg bg-slate-300 p-2" x-text="record.title"></a>
         </template>
-    </ul>
+    </div>
+ 
+    <div id="ex1" class="modal">
+        <p>Thanks for clicking. That felt good.</p>
+        <a href="#" rel="modal:close">Close</a>
+    </div>
+  
 </body>
 <script src="./js/test.js"></script>
 </html>
